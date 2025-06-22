@@ -1,0 +1,25 @@
+org: federicoiribar
+service: api-diagram-generator
+
+provider:
+  name: aws
+  runtime: python3.12
+  memorySize: 1024
+  timeout: 30
+  iam:
+    role: arn:aws:iam::174052614095:role/LabRole
+
+functions:
+  generate_diagram:
+    handler: lambda_function.lambda_handler  # nombre del archivo .py y función
+    package:
+      include:
+        - ./lambda_function.py
+        - ./diagrams/**        # Si usás Diagrams localmente
+        - ./graphviz/**        # Si agregás Graphviz como parte del deploy
+    events:
+      - http:
+          path: /generate
+          method: post
+          cors: true
+          integration: lambda
