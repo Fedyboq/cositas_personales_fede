@@ -7,7 +7,7 @@ provider:
   memorySize: 1024
   timeout: 30
   iam:
-    role: arn:aws:iam::174052614095:role/LabRole
+    role: arn:aws:iam::183332844744:role/LabRole
 
 functions:
   generate_diagram:
